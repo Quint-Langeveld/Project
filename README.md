@@ -10,10 +10,10 @@ prettige manier.
 ```
 
 
-#### App Structuur
+## App Structuur
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190107_111622.jpg" width="60%" height="60%"/>
 
-
+## Info
 #### Data Scources 
 De data komt van de user. Dit zullen waarderingen zijn in het geval van een integer van 1 tot 10. Deze waardes zullen uiteindelijk in een grafiek weeregegeven moeten worden. Dit zal met een externe library gedaan worden (nog uit te zoeken).
 
