@@ -10,4 +10,4 @@ prettige manier.
 ```
 
 
-<img src="https://github.com/Quint-Langeveld/Friendsr/blob/master/doc/Screenshot_20181217-214157.png" width="60%" height="60%"/>
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190107_111622.jpg" width="60%" height="60%"/>
