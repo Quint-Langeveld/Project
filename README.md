@@ -8,3 +8,6 @@ Project Proposal
 Het doel van mijn app is het onthouden van resultaten van bepaalde challenges en deze weergeven op een  
 prettige manier.  
 ```
+
+
+<img src="https://github.com/Quint-Langeveld/Friendsr/blob/master/doc/Screenshot_20181217-214157.png" width="60%" height="60%"/>
