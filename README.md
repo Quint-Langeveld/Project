@@ -12,7 +12,7 @@ prettige manier.
 
 ## App Structuur
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190107_111622.jpg" width="100%" height="100%"/>
-![afb1](/doc/IMG_20190107_111622.jpg)
+![IMG_20190107_111622.jpg](/doc/IMG_20190107_111622)
 
 ## Info
 #### Data Scources 
