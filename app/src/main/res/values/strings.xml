@@ -19,4 +19,8 @@
         <item>Weeks</item>
         <item>Months</item>
     </string-array>
+
+    <string name="subtitle">
+        <item>by Quint</item>
+    </string>
 </resources>
