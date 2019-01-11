@@ -14,6 +14,12 @@
         <item>10</item>
     </string-array>
 
+    <string-array name="aPeriod">
+        <item>a day</item>
+        <item>a week</item>
+        <item>a month</item>
+    </string-array>
+
     <string-array name="periods">
         <item>Days</item>
         <item>Weeks</item>
@@ -23,4 +29,5 @@
     <string name="subtitle">
         <item>by Quint</item>
     </string>
+
 </resources>

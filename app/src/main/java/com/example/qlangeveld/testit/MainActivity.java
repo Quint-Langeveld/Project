@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setSubtitle("by Quint");
+//        actionBar.setSubtitle("by Quint");
         }
 
 
