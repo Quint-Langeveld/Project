@@ -6,4 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="tintedBlue">#11aabb</color>
     <color name="black">#111111</color>
+    <color name="blue">#0808cc</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
