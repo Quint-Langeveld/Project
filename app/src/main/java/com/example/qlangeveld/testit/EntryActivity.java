@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 public class EntryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String amountOfTime;
+    private String amountOfTime = "1";
     private String periodOfTime;
 
-    private String amountOfNotifications;
+    private String amountOfNotifications = "1";
     private String periodOfNotifications;
+
+    private String repeating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,9 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
         String state = "ongoing";
 
-        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state);
+        makeRepeatString();
+
+        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state, repeating);
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
 
@@ -47,7 +51,8 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             mySeekBar.setProgress(progress);
 
             TextView nrOfTime = findViewById(R.id.howLong);
-            String amountString = Integer.toString(progress);
+            int progressToShow = progress + 1;
+            String amountString = Integer.toString(progressToShow);
             nrOfTime.setText(amountString);
 
             amountOfTime = amountString;
@@ -70,7 +75,8 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             mySeekBar.setProgress(progress);
 
             TextView nrOfAmount = findViewById(R.id.howOften);
-            String amountString = Integer.toString(progress);
+            int amountToShow = progress + 1;
+            String amountString = Integer.toString(amountToShow);
             nrOfAmount.setText(amountString);
 
             amountOfNotifications = amountString;
@@ -152,5 +158,48 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private void makeRepeatString() {
+        if (periodOfNotifications.equals("a day")) {
+            if (amountOfNotifications.equals("1")) {
+                repeating = "every day";
+            } else {
+                repeating = amountOfNotifications + " times a day";
+            }
+        } else if (periodOfNotifications.equals("a week")) {
+            if (amountOfNotifications.equals("1")) {
+                repeating = "every week";
+            } else {
+                repeating = amountOfNotifications + " times a week";
+            }
+        } else if (periodOfNotifications.equals("a month")) {
+            if (amountOfNotifications.equals("1")) {
+                repeating = "every month";
+            } else {
+                repeating = amountOfNotifications + " times a month";
+            }
+        }
+
+        // and add the time span to the string
+        if (periodOfTime.equals("Days")) {
+            if (amountOfTime.equals("1")) {
+                repeating = repeating + ", for 1 day";
+            } else {
+                repeating = repeating + ", for " + amountOfTime + " days";
+            }
+        } else if (periodOfTime.equals("Weeks")) {
+            if (amountOfTime.equals("1")) {
+                repeating = repeating + ", for 1 week";
+            } else {
+                repeating = repeating + ", for " + amountOfTime + " weeks";
+            }
+        } else if (periodOfTime.equals("Months")) {
+            if (amountOfTime.equals("1")) {
+                repeating = repeating + ", for 1 month";
+            } else {
+                repeating = repeating + ", for " + amountOfTime + " months";
+            }
+        }
     }
 }

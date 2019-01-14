@@ -17,29 +17,17 @@ public class EntryAdapter extends ResourceCursorAdapter {
 
     @Override
     public void bindView(View convertView, Context context, Cursor cursor)  {
+        String state = cursor.getString((cursor.getColumnIndex("state")));
 
-        int _Id = cursor.getInt(cursor.getColumnIndex("_id"));
-        String textTitle = cursor.getString(cursor.getColumnIndex("title"));
-        String textContext = cursor.getString(cursor.getColumnIndex("content"));
-        String moodString =  cursor.getString(cursor.getColumnIndex("mood"));
-        String intDate = cursor.getString(cursor.getColumnIndex("Timestamp"));
+        if (state.equals("ongoing")) {
+            String textTitle = cursor.getString(cursor.getColumnIndex("challenge"));
+            TextView title = convertView.findViewById(R.id.challengeRowItem);
+            title.setText(textTitle);
 
-//        if (moodString.equals("happy")) {
-//            ((ImageView) convertView.findViewById(R.id.plaatje)).setImageResource(R.drawable.happy);
-//        } else if (moodString.equals("sad")){
-//            ((ImageView) convertView.findViewById(R.id.plaatje)).setImageResource(R.drawable.sad);
-//        } else if (moodString.equals("neutral")) {
-//            ((ImageView) convertView.findViewById(R.id.plaatje)).setImageResource(R.drawable.surprised);
-//        }
-//
-//        TextView Title = convertView.findViewById(R.id.Title);
-//        Title.setText(textTitle);
-//
-//        TextView Context = convertView.findViewById(R.id.context);
-//        Context.setText(textContext);
-//
-//        TextView Date = convertView.findViewById(R.id.daate);
-//        Date.setText(intDate);
+            String repeatText = cursor.getString(cursor.getColumnIndex("repeat"));
+            TextView repeat = convertView.findViewById(R.id.repeatText);
+            repeat.setText(repeatText);
+        }
     }
 }
 

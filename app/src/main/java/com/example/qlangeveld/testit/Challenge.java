@@ -10,15 +10,17 @@ public class Challenge implements Serializable {
     private String amountOfNotifications;
     private String periodOfNotifications;
     private String state;
+    private String repeat;
 
 
-    public Challenge(String challenge, String amountOfTime, String periodOfTime, String amountOfNotifications, String periodOfNotifications, String state) {
+    public Challenge(String challenge, String amountOfTime, String periodOfTime, String amountOfNotifications, String periodOfNotifications, String state, String repeat) {
         this.challege = challenge;
         this.amountOfTime = amountOfTime;
         this.periodOfTime = periodOfTime;
         this.amountOfNotifications = amountOfNotifications;
         this.periodOfNotifications = periodOfNotifications;
         this.state = state;
+        this.repeat = repeat;
     }
 
     public String getChallege() {
@@ -45,6 +47,10 @@ public class Challenge implements Serializable {
         return state;
     }
 
+    public String getRepeat() {
+        return repeat;
+    }
+
     public void setChallege(String challege) {
         this.challege = challege;
     }
@@ -67,5 +73,9 @@ public class Challenge implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public void setRepeat(String repeat) {
+        this.repeat = repeat;
     }
 }

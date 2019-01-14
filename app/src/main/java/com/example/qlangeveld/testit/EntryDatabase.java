@@ -24,7 +24,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime TEXT, periodOfTime TEXT, amountOfNotifications, periodOfNotifications, state TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime TEXT, periodOfTime TEXT, amountOfNotifications, periodOfNotifications, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         db.execSQL(createEntries);
     }
 
@@ -52,7 +52,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         cv.put("amountOfNotifications", challenge.getAmountOfNotifications());
         cv.put("periodOfNotifications", challenge.getPeriodOfNotifications());
         cv.put("state", challenge.getState());
-
+        cv.put("repeat", challenge.getRepeat());
 
         db.insert("entries", null, cv);
     }

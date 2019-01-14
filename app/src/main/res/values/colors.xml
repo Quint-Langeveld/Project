@@ -8,6 +8,8 @@
     <color name="littleMoreBlue">#006666</color>
     <color name="black">#111111</color>
     <color name="blue">#0808cc</color>
+    <color name="witRoze">#ff80ff</color>
+    <color name="felGroen">#80ff00</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
