@@ -1,7 +1,9 @@
 package com.example.qlangeveld.testit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,17 +48,47 @@ public class MainActivity extends AppCompatActivity {
     private class OnItemLongClickListener implements AdapterView.OnItemLongClickListener {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
-            long _id = cursor.getInt(cursor.getColumnIndex("_id"));
 
-            db.removeID(_id);
-            upDateData();
+            showSimplePopUp(parent, position);
+
+
+
+
 
             return true;
         }
     }
 
+    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
+    private void showSimplePopUp(AdapterView<?> parent, int position) {
+        Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+        final long _id = cursor.getInt(cursor.getColumnIndex("_id"));
+        String title = cursor.getString(cursor.getColumnIndex("challenge"));
+
+        String message = "Are you sure you want to delete " + title + " ?";
+
+        // the message
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Delete challenge?");
+
+        helpBuilder.setMessage(message);
+
+        // when really to delete it
+        helpBuilder.setPositiveButton("Yes, delete",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // to remove it
+                        db.removeID(_id);
+                        upDateData();
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
 
     @Override
     protected void onResume() {
