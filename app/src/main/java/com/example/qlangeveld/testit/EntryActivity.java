@@ -1,5 +1,8 @@
 package com.example.qlangeveld.testit;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class EntryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -39,6 +44,19 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state, repeating);
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
+
+
+        // initiate push notifications based on BRON: https://www.youtube.com/watch?v=1fV9NmvxXJo
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 20);
+
+        Intent intent = new Intent(getApplicationContext(), NotoficationReciever.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
 
         finish();
     }

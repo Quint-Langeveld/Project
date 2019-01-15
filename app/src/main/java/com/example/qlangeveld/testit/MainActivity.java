@@ -49,12 +49,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-
             showSimplePopUp(parent, position);
-
-
-
-
 
             return true;
         }
