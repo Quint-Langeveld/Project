@@ -3,6 +3,7 @@ package com.example.qlangeveld.testit;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -72,7 +73,7 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
                 .setContentText(title)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setVibrate(new long[] { 1000, 1000})
+                .setVibrate(new long[] { 500, 500})
                 .setContentIntent(contentIntent)
                 .build();
 
