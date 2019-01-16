@@ -32,3 +32,10 @@ Vragen die vandaag zich hebben opgedaan:
 - hoe de adapter handig te laten werken?
         - als ik op finished klik —> nieuwe activity? neeee…
 
+### dag 8
+blijkt dat ik de verkeerde aanpak voor notifications gebruikte.
+
+Ben geswitcht maar een aanpak die ook API level 26 en hoger aankan.
+
+
+

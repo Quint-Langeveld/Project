@@ -1,8 +1,10 @@
 package com.example.qlangeveld.testit;
 
-import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +15,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
+
 
 public class EntryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private String title;
 
     private String amountOfTime = "1";
     private String periodOfTime;
@@ -25,17 +30,23 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private String repeating;
 
+    private NotificationManagerCompat notificationManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
 
         setUpSpinners();
+
+        notificationManager = NotificationManagerCompat.from(this);
+
     }
 
     public void onDoneClicked(View view) {
         TextView name = findViewById(R.id.title);
-        String title = name.getText().toString();
+        title = name.getText().toString();
 
         String state = "ongoing";
 
@@ -45,22 +56,28 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
 
-
-        // initiate push notifications based on BRON: https://www.youtube.com/watch?v=1fV9NmvxXJo
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 20);
-
-        Intent intent = new Intent(getApplicationContext(), NotoficationReciever.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
+        sendNotificationChannel1();
 
         finish();
     }
 
+
+    private void sendNotificationChannel1() {
+        Intent activityIntent = new Intent(this, InputActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_one)
+                .setContentTitle("Test it!")
+                .setContentText(title)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setVibrate(new long[] { 1000, 1000})
+                .setContentIntent(contentIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
 
     private class SeekBarTimeClickListener implements SeekBar.OnSeekBarChangeListener {
         @Override
@@ -177,6 +194,7 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 
     private void makeRepeatString() {
         if (periodOfNotifications.equals("a day")) {
