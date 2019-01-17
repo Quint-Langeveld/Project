@@ -13,15 +13,19 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener, GestureDetector.OnGestureListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EntryDatabase db;
     private EntryAdapter entryAdapter;
     private FinishedAdapter finishedAdapter;
 
-    private static final int SWIPE_TRESHOLD = 100, SWIPE_VELOCITY_TRESHOLD = 100;
 
+    // based on BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
 
 
     @Override
@@ -39,75 +43,64 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         listView.setOnItemClickListener(new ListItemClickListener());
         listView.setOnItemLongClickListener(new OnItemLongClickListener());
 
-        gestureDetector = new GestureDetector(this,this);
-    }
 
-    @Override
-    public boolean onDown(MotionEvent e) {
-        Toast.makeText(this, "jaa das down", Toast.LENGTH_LONG).show();
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-        Toast.makeText(this, "swipe left", Toast.LENGTH_LONG).show();
-
-
-    }
-
-
-    // based on BRON: https://www.youtube.com/watch?v=32rSs4tE-mc
-    @Override
-    public boolean onFling(MotionEvent downEvent, MotionEvent moveEvent, float velocityX, float velocityY) {
-        boolean result = false;
-        float diffY = moveEvent.getY() - downEvent.getY();
-        float diffX = moveEvent.getX() - downEvent.getX();
-
-        // swipe left and right
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            if (Math.abs(diffX) > SWIPE_TRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_TRESHOLD) {
-                if (diffX > 0) {
-                    onSwipeRight();
-                } else {
-                    onSwipeLeft();
-                }
-                result = true;
+        // based on BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout
+        // Gesture detection
+        gestureDetector = new GestureDetector(this, new MyGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
             }
-        }
-        return result;
+        };
+
+        listView.setOnTouchListener(gestureListener);
+
     }
+
+
+
+    // based on BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                    return false;
+                // right to left swipe
+                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                    onSwipeLeft();
+
+                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                    onSwipeRight();
+
+                }
+            } catch (Exception e) {
+                // nothing
+            }
+            return false;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(this, "HOOI", Toast.LENGTH_LONG).show();
+    }
+
 
     private void onSwipeLeft() {
-        Toast.makeText(this, "swipe left", Toast.LENGTH_LONG).show();
-        // TODO
+        onFinishedClicked();
     }
 
 
     private void onSwipeRight() {
-        Toast.makeText(this, "swipe right", Toast.LENGTH_LONG).show();
-        // TODO
-    }
-
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        gestureDetector.onTouchEvent(event);
-        return true;
+        onGoingClicked();
     }
 
 
@@ -134,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             return true;
         }
     }
+
 
     // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
     private void showSimplePopUp(AdapterView<?> parent, int position) {
@@ -165,14 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         helpDialog.show();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        upDateData();
-    }
 
-
-    public void onGoingClicked(View view) {
+    public void onGoingClicked() {
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(null);
 
@@ -182,7 +170,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         listView.setAdapter(entryAdapter);
     }
 
-    public void onFinishedClicked(View view) {
+
+    public void onFinishedClicked() {
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(null);
 
@@ -192,9 +181,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         listView.setAdapter(finishedAdapter);
     }
 
+
     public void onFloatingButtonClicked(View view) {
         Intent intent = new Intent(MainActivity.this, EntryActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        upDateData();
     }
 
 
@@ -203,9 +200,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Cursor curs = db.selectAll();
         entryAdapter.swapCursor(curs);
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 }
