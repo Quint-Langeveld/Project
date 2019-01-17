@@ -40,6 +40,14 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
+
+    public Cursor selectFinished() {
+        String allFinished = "SELECT * FROM entries WHERE state='finished'";
+        Cursor curs = this.getWritableDatabase().rawQuery(allFinished, null);
+        return curs;
+    }
+
+
     public void insert(Challenge challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 

@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private EntryAdapter entryAdapter;
     private FinishedAdapter finishedAdapter;
 
-    private static final int SWIPE_TRESHOLD = 100;
-    private static final int SWIPE_VELOCITY_TRESHOLD = 100;
+    private static final int SWIPE_TRESHOLD = 100, SWIPE_VELOCITY_TRESHOLD = 100;
 
     private GestureDetector gestureDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public void onLongPress(MotionEvent e) {
+        Toast.makeText(this, "swipe left", Toast.LENGTH_LONG).show();
+
+
     }
 
 
@@ -183,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(null);
 
-        Cursor curs = db.selectAll();
+        Cursor curs = db.selectFinished();
         finishedAdapter = new FinishedAdapter(this, curs);
 
         listView.setAdapter(finishedAdapter);

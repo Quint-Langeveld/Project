@@ -4,13 +4,7 @@ import java.io.Serializable;
 
 public class Challenge implements Serializable {
 
-    private String challege;
-    private String amountOfTime;
-    private String periodOfTime;
-    private String amountOfNotifications;
-    private String periodOfNotifications;
-    private String state;
-    private String repeat;
+    private String challege, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state, repeat;
 
 
     public Challenge(String challenge, String amountOfTime, String periodOfTime, String amountOfNotifications, String periodOfNotifications, String state, String repeat) {
