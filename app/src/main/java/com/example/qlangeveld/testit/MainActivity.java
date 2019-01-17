@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String challenge = cursor.getString(cursor.getColumnIndex("challenge"));
 
             Intent intent = new Intent(MainActivity.this, InputActivity.class);
-//            intent.putExtra("challenge", challenge);
+            intent.putExtra("challenge", challenge);
             startActivity(intent);
         }
     }
@@ -161,23 +161,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onGoingClicked() {
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(null);
-
         Cursor curs = db.selectAll();
         entryAdapter = new EntryAdapter(this, curs);
 
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(entryAdapter);
     }
 
 
     public void onFinishedClicked() {
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(null);
 
         Cursor curs = db.selectFinished();
         finishedAdapter = new FinishedAdapter(this, curs);
 
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(finishedAdapter);
     }
 

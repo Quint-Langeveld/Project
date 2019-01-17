@@ -38,4 +38,11 @@ blijkt dat ik de verkeerde aanpak voor notifications gebruikte.
 Ben geswitcht maar een aanpak die ook API level 26 en hoger aankan.
 
 
+### dag 9
+
+Vandaag heb ik de onSwipeListener geinstaleerd. Dit is goed gegaan op het feit dat m'n onItemLongClickListener om list items te verwijderen niet meer reageert.
+
+Daarnaast werken de knoppen aan de bovenkant van m'n scherm ook niet meer. Het is dus nog even verder uitzoeken hoe dit nou de juiste kant op moet gaan...
+
+
 
