@@ -7,28 +7,12 @@
         <item name="android:backgroundTint">@color/tintedBlue</item>
     </style>
 
-    <!--<style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">-->
-        <!--<item name="android:background">@color/white</item>-->
-        <!--<item name="titleTextStyle">@style/MyTitleTextStyle</item>-->
-        <!--<item name="subtitleTextStyle">@style/MyTitleTextStyle</item>-->
-    <!--</style>-->
-
-    <!--<style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">-->
-        <!--<item name="android:text">@string/subtitle</item>-->
-        <!--<item name="android:textColor">@color/blue</item>-->
-        <!--<item name="android:textSize">10pt</item>-->
-    <!--</style>-->
-
     <style name="empty" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/tintedBlue</item>
         <item name="android:backgroundTint">@color/tintedBlue</item>
         <item name="android:statusBarColor">@color/littleMoreBlue</item>
     </style>
 
-    <!--<style name="MySubtitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">-->
-    <!--<item name="android:subtitle">@string/subtitle</item>-->
-    <!--<item name="android:textColor">@color/colorPrimary</item>-->
-    <!--<item name="android:textSize">6pt</item>-->
-    <!--</style>-->
+
 
 </resources>

@@ -43,20 +43,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listView.setOnItemClickListener(new ListItemClickListener());
         listView.setOnItemLongClickListener(new OnItemLongClickListener());
 
-
         // based on BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout
-        // Gesture detection
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
-        gestureListener = new View.OnTouchListener() {
+        listView.setOnTouchListener(new View.OnTouchListener(){
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
+                gestureDetector.onTouchEvent(event);
+                return false;
             }
-        };
-
-        listView.setOnTouchListener(gestureListener);
+        });
 
     }
 
+    public void onFinishedClicked(View view) {
+        onFinishedClicked();
+    }
+
+    public void onGoingClicked(View view) {
+        onGoingClicked();
+    }
 
 
     // based on BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout
@@ -170,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onFinishedClicked() {
-
         Cursor curs = db.selectFinished();
         finishedAdapter = new FinishedAdapter(this, curs);
 

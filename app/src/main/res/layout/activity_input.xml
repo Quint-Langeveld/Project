@@ -108,8 +108,7 @@
         android:id="@+id/challengeText"
         android:layout_width="230dp"
         android:layout_height="58dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="88dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Challenge"
@@ -117,7 +116,66 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/viewProgress2"
+        android:layout_width="15dp"
+        android:layout_height="190dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="progress"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewProgress" />
+
+    <TextView
+        android:id="@+id/viewProgress"
+        android:layout_width="15dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="view"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/viewProgress2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="15dp"
+        android:layout_height="135dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="➪ swipe"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="15dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="to"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/viewProgress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
 </android.support.constraint.ConstraintLayout>
+

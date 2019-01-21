@@ -2,14 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.qlangeveld.testit">
 
+    <!--      sources:      -->
+    <!--<div>Icons made by <a href="https://www.flaticon.com/authors/turkkub" title="turkkub">turkkub</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
+    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/winner"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/winner"
         android:supportsRtl="true">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +29,8 @@
         <activity
             android:name=".InputActivity"
             android:theme="@style/empty" />
-
-
-        
+        <activity android:name=".GraphActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

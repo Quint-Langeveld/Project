@@ -50,6 +50,13 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    public Cursor selectPieChart() {
+        String selectPie = "SELECT succeeded FROM itemValues";
+        Cursor pieCursor = this.getWritableDatabase().rawQuery(selectPie, null);
+        return pieCursor;
+    }
+
+
     public void insert(Challenge challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -68,7 +75,15 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
     public void insertValue(Value value) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues cv = new ContentValues();
+
+        cv.put("challenge", value.getChallenge());
+        cv.put("succeeded", value.getSucceeded());
+        cv.put("rating", value.getFeeling());
+
+        db.insert("itemValues", null, cv);
     }
 
 

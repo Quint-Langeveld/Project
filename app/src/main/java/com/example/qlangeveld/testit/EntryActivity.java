@@ -67,7 +67,7 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_one)
+                .setSmallIcon(R.drawable.winner)
                 .setContentTitle("Test it!")
                 .setContentText(title)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -159,32 +159,26 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         switch (text) {
             case "a day": {
                 periodOfNotifications = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
 
             case "a week": {
                 periodOfNotifications = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
 
             case "a month": {
                 periodOfNotifications = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
 
             case "Days": {
                 periodOfTime = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
 
             case "Weeks": {
                 periodOfTime = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
 
             case "Months": {
                 periodOfTime = text;
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             } break;
         }
     }

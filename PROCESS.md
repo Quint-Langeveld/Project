@@ -46,3 +46,15 @@ Daarnaast werken de knoppen aan de bovenkant van m'n scherm ook niet meer. Het i
 
 
 
+## Week 3
+
+### day 11
+to do:
+- in de input activity een knop maken naar 'view process'. Hiervoor dus ook de graph lib implementeren
+
+- eindelijk de swipelistener fixen!!
+
+- ongoing en finised knoppen fixen. nu crashed mn app nmlk.
+
+gedaan:
+- icoontjes ingesreld!
