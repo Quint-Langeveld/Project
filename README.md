@@ -29,3 +29,7 @@ De apps die het meest hierop lijken bevatten 1 vaste challenge. Niet roken/niet 
 
 #### Hardest Parts
 Het lastigste zal het weergeven van de resultten zijn. Allereerst met een grafiek en daarnaast zal de grafiek steeds een verschillend aantal waardes uit een SQLite database moeten halen. Hier verwacht ik de meeste moeilijkheden. 
+
+
+## MVP
+TODO
