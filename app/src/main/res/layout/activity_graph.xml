@@ -8,14 +8,33 @@
     tools:context=".GraphActivity">
 
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fadingEdge="none|horizontal|vertical"
+        android:gravity="center"
+        android:text="Did you succeed?"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_horizontal"
+        android:text="TextView"
+        android:textColor="@color/witRoze"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
     <com.anychart.AnyChartView
         android:id="@+id/topChart"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:background="@color/tintedBlue"
-        android:backgroundTint="@color/littleMoreBlue"
-        android:backgroundTintMode="src_over"
-        android:foregroundTint="@color/tintedBlue"
+        android:layout_height="220dp"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,14 +43,29 @@
 
     </com.anychart.AnyChartView>
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="And when did you feel the best?"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <com.jjoe64.graphview.GraphView
         android:id="@+id/bottomGraph"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topChart"
         tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="day"
+        android:textAlignment="center" />
 
 </LinearLayout>

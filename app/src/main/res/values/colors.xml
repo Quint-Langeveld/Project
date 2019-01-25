@@ -10,6 +10,8 @@
     <color name="blue">#873eee</color>
     <color name="witRoze">#ffccff</color>
     <color name="felGroen">#80ff00</color>
-
+    <color name="mediumTurquoise">#48d1cc</color>
     <color name="black_overlay">#66000000</color>
+    <color name="deepSkyBlue">#00bfff</color>
+    <color name="darkTurquoise">#00ced1</color>
 </resources>

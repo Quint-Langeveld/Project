@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -32,6 +33,8 @@ public class GraphActivity extends AppCompatActivity {
         Intent intent = getIntent();
         challenge = (String) intent.getSerializableExtra("challenge");
 
+        TextView name = findViewById(R.id.name);
+        name.setText(challenge);
 
 //      setting the top chart
         setTopChart();
@@ -64,13 +67,19 @@ public class GraphActivity extends AppCompatActivity {
 
         // fill the pie chart
         AnyChartView topChart = findViewById(R.id.topChart);
+        topChart.setBackgroundColor("#11AABB");
         Pie pie = AnyChart.pie();
+
+//        pie.labels()
+//                .fontColor("black")
 
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Succeeded", lengthSucces));
         data.add(new ValueDataEntry("Failed", lengthFail));
 
         pie.data(data);
+
+        pie.background("#11AABB");
 
         pie.legend()
                 .position("right")
@@ -83,20 +92,46 @@ public class GraphActivity extends AppCompatActivity {
 
     public void setBottomChart() {
         // retrieve data
-//        Cursor feelingCursor = db.selectFeeling(challenge);
+        Cursor feelingCursor = db.selectFeeling(challenge);
 
-        // fill the graph
-//        AnyChartView bottomChart = findViewById(R.id.bottomChart);
+        List<Integer> ratings = new ArrayList<>();
+        List<Integer> xPositions = new ArrayList<>();
 
-        GraphView graph = (GraphView) findViewById(R.id.bottomGraph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+        if (feelingCursor.moveToFirst()) {
+            int counter = 0;
+            do {
+
+                int feel = feelingCursor.getInt(feelingCursor.getColumnIndex("feeling"));
+                ratings.add(feel);
+                xPositions.add(counter);
+
+                counter += 1;
+
+            } while (feelingCursor.moveToNext());
+        }
+        feelingCursor.close();
+
+
+        int size = ratings.size();
+        DataPoint[] data = new DataPoint[size];
+
+        for (int i=0; i<size; i++) {
+            int y = ratings.get(i);
+            int x = xPositions.get(i);
+            DataPoint newDataPoint = new DataPoint(x, y);
+
+            data[i] = newDataPoint;
+        }
+
+
+        // and fill the graph!
+        GraphView graph = findViewById(R.id.bottomGraph);
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data);
+        series.setThickness(25);
+
         graph.addSeries(series);
 
     }
+
 }
