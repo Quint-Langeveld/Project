@@ -24,7 +24,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime TEXT, periodOfTime TEXT, amountOfNotifications, periodOfNotifications, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, periodOfNotifications TEXT, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         String createItemValues = "create table itemValues (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, succeeded INT, feeling INT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         db.execSQL(createEntries);
         db.execSQL(createItemValues);
@@ -40,6 +40,13 @@ public class EntryDatabase extends SQLiteOpenHelper {
         String select = "SELECT * FROM entries";
         Cursor cursor = this.getWritableDatabase().rawQuery(select,  null);
         return cursor;
+    }
+
+
+    public Cursor selectOngoing() {
+        String selectOngoing = "SELECT * FROM entries WHERE state='ongoing'";
+        Cursor curs = this.getWritableDatabase().rawQuery(selectOngoing, null);
+        return curs;
     }
 
 
@@ -62,6 +69,41 @@ public class EntryDatabase extends SQLiteOpenHelper {
         Cursor feelCursor = this.getWritableDatabase().rawQuery(selectFeeling, null);
         return feelCursor;
     }
+
+
+    public Cursor selectTimeOfChallenge(String challenge) {
+        String selectTime = "SELECT amountOfTime FROM entries WHERE challenge='" + challenge + "'";
+        Cursor timeCursor = this.getWritableDatabase().rawQuery(selectTime,null);
+        return timeCursor;
+    }
+
+
+    public Cursor selectPeriodOfChallenge(String challenge) {
+        String selectPeriod = "SELECT periodOfTime FROM entries WHERE challenge='" + challenge + "'";
+        Cursor periodCursor = this.getWritableDatabase().rawQuery(selectPeriod,null);
+        return periodCursor;
+    }
+
+    public Cursor selectAmountOfNotifications(String challenge) {
+        String selectamountNOti = "SELECT amountOfNotifications FROM entries WHERE challenge='" + challenge + "'";
+        Cursor amountNotiCursor = this.getWritableDatabase().rawQuery(selectamountNOti,null);
+        return amountNotiCursor;
+    }
+
+    public Cursor selectPeriodOfNotifications(String challenge) {
+        String selectTimeNoti = "SELECT periodOfNotifications FROM entries WHERE challenge='" + challenge + "'";
+        Cursor PeriodNotiCursor = this.getWritableDatabase().rawQuery(selectTimeNoti,null);
+        return PeriodNotiCursor;
+    }
+
+
+    public void toFinished(String challenge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String toFinishedChallenge = "UPDATE entries SET state='finished' WHERE challenge='" + challenge + "'";
+        db.execSQL(toFinishedChallenge);
+    }
+
 
 
     public void insert(Challenge challenge) {

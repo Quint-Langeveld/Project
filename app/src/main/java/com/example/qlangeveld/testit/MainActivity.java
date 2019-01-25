@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         db = EntryDatabase.getInstance(this);
-        Cursor curs = db.selectAll();
+        Cursor curs = db.selectOngoing();
         entryAdapter = new EntryAdapter(this, curs);
 
         ListView listView = findViewById(R.id.listView);
@@ -95,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(this, "HOOI", Toast.LENGTH_LONG).show();
     }
 
 
@@ -166,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onGoingClicked() {
-        Cursor curs = db.selectAll();
+        Cursor curs = db.selectOngoing();
         entryAdapter = new EntryAdapter(this, curs);
 
         ListView listView = findViewById(R.id.listView);
@@ -198,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void upDateData() {
         db = EntryDatabase.getInstance(this);
-        Cursor curs = db.selectAll();
+        Cursor curs = db.selectOngoing();
         entryAdapter.swapCursor(curs);
     }
 

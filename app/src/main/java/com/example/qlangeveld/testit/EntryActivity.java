@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
@@ -22,10 +21,12 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private String title;
 
-    private String amountOfTime = "1";
+    private int amountOfTime = 1;
+    private String amountOfTimeString = "1";
     private String periodOfTime;
 
-    private String amountOfNotifications = "1";
+    private int amountOfNotifications = 1;
+    private String amountOfNotificationsString = "1";
     private String periodOfNotifications;
 
     private String repeating;
@@ -90,7 +91,8 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             String amountString = Integer.toString(progressToShow);
             nrOfTime.setText(amountString);
 
-            amountOfTime = amountString;
+            amountOfTime = progressToShow;
+            amountOfTimeString = amountString;
         }
 
         @Override
@@ -114,7 +116,9 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             String amountString = Integer.toString(amountToShow);
             nrOfAmount.setText(amountString);
 
-            amountOfNotifications = amountString;
+            amountOfNotifications = amountToShow;
+            amountOfNotificationsString = amountString;
+
         }
 
         @Override
@@ -192,19 +196,19 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private void makeRepeatString() {
         if (periodOfNotifications.equals("a day")) {
-            if (amountOfNotifications.equals("1")) {
+            if (amountOfNotificationsString.equals("1")) {
                 repeating = "every day";
             } else {
                 repeating = amountOfNotifications + " times a day";
             }
         } else if (periodOfNotifications.equals("a week")) {
-            if (amountOfNotifications.equals("1")) {
+            if (amountOfNotificationsString.equals("1")) {
                 repeating = "every week";
             } else {
                 repeating = amountOfNotifications + " times a week";
             }
         } else if (periodOfNotifications.equals("a month")) {
-            if (amountOfNotifications.equals("1")) {
+            if (amountOfNotificationsString.equals("1")) {
                 repeating = "every month";
             } else {
                 repeating = amountOfNotifications + " times a month";
@@ -213,19 +217,19 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
         // and add the time span to the string
         if (periodOfTime.equals("Days")) {
-            if (amountOfTime.equals("1")) {
+            if (amountOfTimeString.equals("1")) {
                 repeating = repeating + ", for 1 day";
             } else {
                 repeating = repeating + ", for " + amountOfTime + " days";
             }
         } else if (periodOfTime.equals("Weeks")) {
-            if (amountOfTime.equals("1")) {
+            if (amountOfTimeString.equals("1")) {
                 repeating = repeating + ", for 1 week";
             } else {
                 repeating = repeating + ", for " + amountOfTime + " weeks";
             }
         } else if (periodOfTime.equals("Months")) {
-            if (amountOfTime.equals("1")) {
+            if (amountOfTimeString.equals("1")) {
                 repeating = repeating + ", for 1 month";
             } else {
                 repeating = repeating + ", for " + amountOfTime + " months";

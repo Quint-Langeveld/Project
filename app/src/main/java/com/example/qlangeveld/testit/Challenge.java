@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Challenge implements Serializable {
 
-    private String challege, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state, repeat;
+    private String challege,  periodOfTime, periodOfNotifications, state, repeat;
+    private int amountOfTime, amountOfNotifications;
 
-
-    public Challenge(String challenge, String amountOfTime, String periodOfTime, String amountOfNotifications, String periodOfNotifications, String state, String repeat) {
+    public Challenge(String challenge, int amountOfTime, String periodOfTime, int amountOfNotifications, String periodOfNotifications, String state, String repeat) {
         this.challege = challenge;
         this.amountOfTime = amountOfTime;
         this.periodOfTime = periodOfTime;
@@ -21,7 +21,7 @@ public class Challenge implements Serializable {
         return challege;
     }
 
-    public String getAmountOfTime() {
+    public int getAmountOfTime() {
         return amountOfTime;
     }
 
@@ -29,7 +29,7 @@ public class Challenge implements Serializable {
         return periodOfTime;
     }
 
-    public String getAmountOfNotifications() {
+    public int getAmountOfNotifications() {
         return amountOfNotifications;
     }
 
@@ -49,7 +49,7 @@ public class Challenge implements Serializable {
         this.challege = challege;
     }
 
-    public void setAmountOfTime(String amountOfTime) {
+    public void setAmountOfTime(int amountOfTime) {
         this.amountOfTime = amountOfTime;
     }
 
@@ -57,7 +57,7 @@ public class Challenge implements Serializable {
         this.periodOfTime = periodOfTime;
     }
 
-    public void setAmountOfNotifications(String amountOfNotifications) {
+    public void setAmountOfNotifications(int amountOfNotifications) {
         this.amountOfNotifications = amountOfNotifications;
     }
 
