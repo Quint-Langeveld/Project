@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.ResourceCursorAdapter;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class FinishedAdapter extends ResourceCursorAdapter {
@@ -26,6 +27,10 @@ public class FinishedAdapter extends ResourceCursorAdapter {
             String repeatText = cursor.getString(cursor.getColumnIndex("repeat"));
             TextView repeat = convertView.findViewById(R.id.repeatText);
             repeat.setText(repeatText);
+
+            ProgressBar progressBar = convertView.findViewById(R.id.progressBar2);
+            progressBar.setProgress(100);
         }
+
     }
 }

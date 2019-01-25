@@ -23,9 +23,10 @@
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="17dp"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:max="100"
         android:progress="30"
         app:layout_constraintEnd_toEndOf="parent"

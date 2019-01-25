@@ -113,10 +113,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
             String challenge = cursor.getString(cursor.getColumnIndex("challenge"));
+            String name = cursor.getString(cursor.getColumnIndex("state"));
 
-            Intent intent = new Intent(MainActivity.this, InputActivity.class);
-            intent.putExtra("challenge", challenge);
-            startActivity(intent);
+            if (name.equals("finished")) {
+                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+                intent.putExtra("challenge", challenge);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(MainActivity.this, InputActivity.class);
+                intent.putExtra("challenge", challenge);
+                startActivity(intent);
+            }
         }
     }
 

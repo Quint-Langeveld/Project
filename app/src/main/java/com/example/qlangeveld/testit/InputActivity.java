@@ -48,7 +48,13 @@ public class InputActivity extends AppCompatActivity{
 
         isChallengeFinished();
 
+        calculateProgress();
+
         finish();
+    }
+
+    private void calculateProgress() {
+
     }
 
 
@@ -57,31 +63,26 @@ public class InputActivity extends AppCompatActivity{
         // Check if challenge is completed!
         Cursor selectTimeCursor = db.selectTimeOfChallenge(challenge);
         Cursor selectPeriodCursor = db.selectPeriodOfChallenge(challenge);
-        Cursor amountOfNotificationsCursor = db.selectAmountOfNotifications(challenge);
+//        Cursor amountOfNotificationsCursor = db.selectAmountOfNotifications(challenge);
         Cursor PeriodOfNotificationsCursor = db.selectPeriodOfNotifications(challenge);
 
-        Log.d(challenge, "isChallengeFinished: ");
 
         selectPeriodCursor.moveToFirst();
         String PeriodOfChallenge = selectPeriodCursor.getString(selectPeriodCursor.getColumnIndex("periodOfTime"));
         selectPeriodCursor.close();
-        Log.d("1", "isChallengeFinished: ");
 
         selectTimeCursor.moveToFirst();
         int TimeOfChallenge = selectTimeCursor.getInt(selectTimeCursor.getColumnIndex("amountOfTime"));
         selectTimeCursor.close();
-        Log.d("2", "isChallengeFinished: ");
 
-
-        amountOfNotificationsCursor.moveToFirst();
-        int amountOfNotifications = amountOfNotificationsCursor.getInt(amountOfNotificationsCursor.getColumnIndex("amountOfNotifications"));
-        amountOfNotificationsCursor.close();
-        Log.d("3", "isChallengeFinished: ");
+//        amountOfNotificationsCursor.moveToFirst();
+//        int amountOfNotifications = amountOfNotificationsCursor.getInt(amountOfNotificationsCursor.getColumnIndex("amountOfNotifications"));
+//        amountOfNotificationsCursor.close();
+//        Log.d("3", "isChallengeFinished: ");
 
         PeriodOfNotificationsCursor.moveToFirst();
         String PeriodOfNotifications = PeriodOfNotificationsCursor.getString(PeriodOfNotificationsCursor.getColumnIndex("periodOfNotifications"));
         PeriodOfNotificationsCursor.close();
-        Log.d("4", "isChallengeFinished: ");
 
 
         // check how often the challenged had to be filled in
@@ -116,7 +117,6 @@ public class InputActivity extends AppCompatActivity{
         }
 
 
-
         // and check how often the challenge already is filled in
         Cursor selectPieChartCursor = db.selectPieChart(challenge);
         int counter = 0;
@@ -127,13 +127,9 @@ public class InputActivity extends AppCompatActivity{
         }
         selectPieChartCursor.close();
 
-
         if (counter >= finalAmount) {
-            Log.d("5", "isChallengeFinished: ");
             EntryDatabase.getInstance(getApplicationContext()).toFinished(challenge);
         }
-
-
     }
 
 

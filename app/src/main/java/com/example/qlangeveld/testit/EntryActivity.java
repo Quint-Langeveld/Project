@@ -27,7 +27,7 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private int amountOfNotifications = 1;
     private String amountOfNotificationsString = "1";
-    private String periodOfNotifications;
+    private String periodOfNotifications = "a day";
 
     private String repeating;
 
@@ -148,11 +148,11 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         spinner1.setOnItemSelectedListener(this);
 
         //spinner 2
-        Spinner spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.aPeriod, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
-        spinner2.setOnItemSelectedListener(this);
+//        Spinner spinner2 = findViewById(R.id.spinner2);
+//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.aPeriod, android.R.layout.simple_spinner_item);
+//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner2.setAdapter(adapter2);
+//        spinner2.setOnItemSelectedListener(this);
     }
 
 
@@ -201,18 +201,18 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             } else {
                 repeating = amountOfNotifications + " times a day";
             }
-        } else if (periodOfNotifications.equals("a week")) {
-            if (amountOfNotificationsString.equals("1")) {
-                repeating = "every week";
-            } else {
-                repeating = amountOfNotifications + " times a week";
-            }
-        } else if (periodOfNotifications.equals("a month")) {
-            if (amountOfNotificationsString.equals("1")) {
-                repeating = "every month";
-            } else {
-                repeating = amountOfNotifications + " times a month";
-            }
+//        } else if (periodOfNotifications.equals("a week")) {
+//            if (amountOfNotificationsString.equals("1")) {
+//                repeating = "every week";
+//            } else {
+//                repeating = amountOfNotifications + " times a week";
+//            }
+//        } else if (periodOfNotifications.equals("a month")) {
+//            if (amountOfNotificationsString.equals("1")) {
+//                repeating = "every month";
+//            } else {
+//                repeating = amountOfNotifications + " times a month";
+//            }
         }
 
         // and add the time span to the string
