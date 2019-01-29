@@ -36,11 +36,11 @@ public class GraphActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.name);
         name.setText(challenge);
 
-//      setting the top chart
+        // setting the top chart
         setTopChart();
 
 
-//      setting the bottom chart
+        // setting the bottom chart
         setBottomChart();
     }
 
@@ -70,8 +70,6 @@ public class GraphActivity extends AppCompatActivity {
         topChart.setBackgroundColor("#11AABB");
         Pie pie = AnyChart.pie();
 
-//        pie.labels()
-//                .fontColor("black")
 
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Succeeded", lengthSucces));

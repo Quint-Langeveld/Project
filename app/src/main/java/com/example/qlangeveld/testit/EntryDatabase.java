@@ -36,12 +36,6 @@ public class EntryDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Cursor selectAll() {
-        String select = "SELECT * FROM entries";
-        Cursor cursor = this.getWritableDatabase().rawQuery(select,  null);
-        return cursor;
-    }
-
 
     public Cursor selectOngoing() {
         String selectOngoing = "SELECT * FROM entries WHERE state='ongoing'";
@@ -84,6 +78,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return periodCursor;
     }
 
+
     public Cursor selectAmountOfNotifications(String challenge) {
         String selectamountNOti = "SELECT amountOfNotifications FROM entries WHERE challenge='" + challenge + "'";
         Cursor amountNotiCursor = this.getWritableDatabase().rawQuery(selectamountNOti,null);
@@ -105,7 +100,6 @@ public class EntryDatabase extends SQLiteOpenHelper {
         String setProgressChallenge = "UPDATE entries SET progress='" + progress + "' WHERE challenge='" + challenge + "'";
         db.execSQL(setProgressChallenge);
     }
-
 
 
     public void insert(Challenge challenge) {
