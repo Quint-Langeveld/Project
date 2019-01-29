@@ -1,5 +1,6 @@
 package com.example.qlangeveld.testit;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
@@ -57,13 +60,27 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
 
-        sendNotificationChannel1();
+        /////////////from BRON: https://stackoverflow.com/questions/23440251/how-to-repeat-notification-daily-on-specific-time-in-android-through-background///////////////////
+        // sendNotificationChannel1();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Intent intent1 = new Intent(EntryActivity.this, AlarmReciever.class);
+        intent1.putExtra("title", title);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(EntryActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        ////////////////////////////////
+
 
         finish();
     }
 
 
-    private void sendNotificationChannel1() {
+    public void sendNotificationChannel1() {
         Intent activityIntent = new Intent(this, InputActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
 
@@ -146,13 +163,6 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
         spinner1.setOnItemSelectedListener(this);
-
-        //spinner 2
-//        Spinner spinner2 = findViewById(R.id.spinner2);
-//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.aPeriod, android.R.layout.simple_spinner_item);
-//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner2.setAdapter(adapter2);
-//        spinner2.setOnItemSelectedListener(this);
     }
 
 
@@ -201,18 +211,6 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
             } else {
                 repeating = amountOfNotifications + " times a day";
             }
-//        } else if (periodOfNotifications.equals("a week")) {
-//            if (amountOfNotificationsString.equals("1")) {
-//                repeating = "every week";
-//            } else {
-//                repeating = amountOfNotifications + " times a week";
-//            }
-//        } else if (periodOfNotifications.equals("a month")) {
-//            if (amountOfNotificationsString.equals("1")) {
-//                repeating = "every month";
-//            } else {
-//                repeating = amountOfNotifications + " times a month";
-//            }
         }
 
         // and add the time span to the string
