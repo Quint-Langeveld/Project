@@ -6,11 +6,14 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
+
+
+
+
+//from BRON: https://stackoverflow.com/questions/23440251/how-to-repeat-notification-daily-on-specific-time-in-android-through-background
 
 public class AlarmReciever extends BroadcastReceiver {
 
@@ -19,11 +22,11 @@ public class AlarmReciever extends BroadcastReceiver {
 
         String title = (String) intent.getSerializableExtra("title");
 
-        long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent notificationIntent = new Intent(context, InputActivity.class);
+        notificationIntent.putExtra("challenge", title);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
@@ -42,20 +45,6 @@ public class AlarmReciever extends BroadcastReceiver {
 
 
         notificationManager.notify(1, notification);
-
-
-//
-//        NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(
-//                context).setSmallIcon(R.drawable.applogo)
-//                .setContentTitle("Alarm Fired")
-//                .setContentText("Events to be Performed").setSound(alarmSound)
-//                .setAutoCancel(true).setWhen(when)
-//                .setContentIntent(pendingIntent)
-//                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
-//        notificationManager.notify(MID, mNotifyBuilder.build());
-//        MID++;
-
     }
-
-
 }
+

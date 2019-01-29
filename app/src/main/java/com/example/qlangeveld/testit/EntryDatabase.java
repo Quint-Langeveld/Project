@@ -24,7 +24,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, periodOfNotifications TEXT, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, progress INT, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         String createItemValues = "create table itemValues (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, succeeded INT, feeling INT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         db.execSQL(createEntries);
         db.execSQL(createItemValues);
@@ -90,18 +90,20 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return amountNotiCursor;
     }
 
-    public Cursor selectPeriodOfNotifications(String challenge) {
-        String selectTimeNoti = "SELECT periodOfNotifications FROM entries WHERE challenge='" + challenge + "'";
-        Cursor PeriodNotiCursor = this.getWritableDatabase().rawQuery(selectTimeNoti,null);
-        return PeriodNotiCursor;
-    }
-
 
     public void toFinished(String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String toFinishedChallenge = "UPDATE entries SET state='finished' WHERE challenge='" + challenge + "'";
         db.execSQL(toFinishedChallenge);
+    }
+
+
+    public void setProgress(int progress, String challenge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String setProgressChallenge = "UPDATE entries SET progress='" + progress + "' WHERE challenge='" + challenge + "'";
+        db.execSQL(setProgressChallenge);
     }
 
 
@@ -116,12 +118,13 @@ public class EntryDatabase extends SQLiteOpenHelper {
         cv.put("amountOfTime", challenge.getAmountOfTime());
         cv.put("periodOfTime", challenge.getPeriodOfTime());
         cv.put("amountOfNotifications", challenge.getAmountOfNotifications());
-        cv.put("periodOfNotifications", challenge.getPeriodOfNotifications());
+        cv.put("progress", challenge.getProgress());
         cv.put("state", challenge.getState());
         cv.put("repeat", challenge.getRepeat());
 
         db.insert("entries", null, cv);
     }
+
 
     public void insertValue(Value value) {
         SQLiteDatabase db = this.getWritableDatabase();

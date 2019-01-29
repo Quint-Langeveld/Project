@@ -48,13 +48,18 @@ public class InputActivity extends AppCompatActivity{
 
         isChallengeFinished();
 
-        calculateProgress();
-
         finish();
     }
 
-    private void calculateProgress() {
 
+    private void setProgress(int totalProgress, int nowProgress) {
+
+        float percent = (nowProgress * 100.0f) / totalProgress;
+        int newPercent = Math.round(percent);
+
+        Log.d("progress", "setProgress: " + newPercent);
+
+        EntryDatabase.getInstance(getApplicationContext()).setProgress(newPercent, challenge);
     }
 
 
@@ -63,8 +68,7 @@ public class InputActivity extends AppCompatActivity{
         // Check if challenge is completed!
         Cursor selectTimeCursor = db.selectTimeOfChallenge(challenge);
         Cursor selectPeriodCursor = db.selectPeriodOfChallenge(challenge);
-//        Cursor amountOfNotificationsCursor = db.selectAmountOfNotifications(challenge);
-        Cursor PeriodOfNotificationsCursor = db.selectPeriodOfNotifications(challenge);
+        Cursor selectAmountOfNotificationsCursor = db.selectAmountOfNotifications(challenge);
 
 
         selectPeriodCursor.moveToFirst();
@@ -75,44 +79,41 @@ public class InputActivity extends AppCompatActivity{
         int TimeOfChallenge = selectTimeCursor.getInt(selectTimeCursor.getColumnIndex("amountOfTime"));
         selectTimeCursor.close();
 
-//        amountOfNotificationsCursor.moveToFirst();
-//        int amountOfNotifications = amountOfNotificationsCursor.getInt(amountOfNotificationsCursor.getColumnIndex("amountOfNotifications"));
-//        amountOfNotificationsCursor.close();
-//        Log.d("3", "isChallengeFinished: ");
-
-        PeriodOfNotificationsCursor.moveToFirst();
-        String PeriodOfNotifications = PeriodOfNotificationsCursor.getString(PeriodOfNotificationsCursor.getColumnIndex("periodOfNotifications"));
-        PeriodOfNotificationsCursor.close();
+        selectAmountOfNotificationsCursor.moveToFirst();
+        int amountOfNOtifications = selectAmountOfNotificationsCursor.getInt(selectAmountOfNotificationsCursor.getColumnIndex("amountOfNotifications"));
+        selectAmountOfNotificationsCursor.close();
 
 
         // check how often the challenged had to be filled in
-        int finalAmount;
+        int totalProgress;
 
         if (PeriodOfChallenge.equals("Days")) {
-            if (PeriodOfNotifications.equals("a week")) {
-                finalAmount = 1;
-            } else if (PeriodOfNotifications.equals("a month")) {
-                finalAmount = 1;
+
+            if (amountOfNOtifications == 2) {
+                totalProgress = TimeOfChallenge * 2;
+            } else if (amountOfNOtifications == 3) {
+                totalProgress = TimeOfChallenge * 3;
             } else {
-                finalAmount = TimeOfChallenge;
+                totalProgress = TimeOfChallenge;
             }
 
         } else if (PeriodOfChallenge.equals("Weeks")) {
-            if (PeriodOfNotifications.equals("a day")) {
-                finalAmount = TimeOfChallenge * 7;
-            } else if (PeriodOfNotifications.equals("a month")) {
-                finalAmount = TimeOfChallenge / 4;
-            } else {
-                finalAmount = TimeOfChallenge;
+
+            totalProgress = TimeOfChallenge * 7;
+
+            if (amountOfNOtifications == 2) {
+                totalProgress = totalProgress * 2;
+            } else if (amountOfNOtifications == 3) {
+                totalProgress = TimeOfChallenge * 3;
             }
 
         } else {
-            if (PeriodOfNotifications.equals("a day")) {
-                finalAmount = TimeOfChallenge * 30;
-            } else if (PeriodOfNotifications.equals("a week")) {
-                finalAmount = TimeOfChallenge * 4;
-            } else {
-                finalAmount = TimeOfChallenge;
+            totalProgress = TimeOfChallenge * 30;
+
+            if (amountOfNOtifications == 2) {
+                totalProgress = totalProgress * 2;
+            } else if (amountOfNOtifications == 3) {
+                totalProgress = TimeOfChallenge * 3;
             }
         }
 
@@ -127,7 +128,9 @@ public class InputActivity extends AppCompatActivity{
         }
         selectPieChartCursor.close();
 
-        if (counter >= finalAmount) {
+        setProgress(totalProgress, counter);
+
+        if (counter >= totalProgress) {
             EntryDatabase.getInstance(getApplicationContext()).toFinished(challenge);
         }
     }

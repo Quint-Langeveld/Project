@@ -1,10 +1,8 @@
 package com.example.qlangeveld.testit;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Calendar;
-
-import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
 
 public class EntryActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -56,46 +52,93 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
 
         makeRepeatString();
 
-        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, periodOfNotifications, state, repeating);
+        int progress = 0;
+
+        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, progress, state, repeating);
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
 
-        /////////////from BRON: https://stackoverflow.com/questions/23440251/how-to-repeat-notification-daily-on-specific-time-in-android-through-background///////////////////
-        // sendNotificationChannel1();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        Intent intent1 = new Intent(EntryActivity.this, AlarmReciever.class);
-        intent1.putExtra("title", title);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(EntryActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager am = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-        ////////////////////////////////
-
+        setNotifications();
 
         finish();
     }
 
 
-    public void sendNotificationChannel1() {
-        Intent activityIntent = new Intent(this, InputActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
+    private void setNotifications() {
+        //from BRON: https://stackoverflow.com/questions/23440251/how-to-repeat-notification-daily-on-specific-time-in-android-through-background
 
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.winner)
-                .setContentTitle("Test it!")
-                .setContentText(title)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setVibrate(new long[] { 500, 500})
-                .setContentIntent(contentIntent)
-                .build();
+        if (amountOfNotifications == 1) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 17);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Intent intent1 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent1.putExtra("title", title);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(EntryActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-        notificationManager.notify(1, notification);
+        } else if (amountOfNotifications == 2){
+
+            // first notification
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Intent intent1 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent1.putExtra("title", title);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(EntryActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+            // second notifiction
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(Calendar.HOUR_OF_DAY, 18);
+            calendar2.set(Calendar.MINUTE, 0);
+            calendar2.set(Calendar.SECOND, 0);
+            Intent intent2 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent1.putExtra("title", title);
+            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(EntryActivity.this, 0,intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am2 = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
+
+        } else {
+
+            // first notification
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 9);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Intent intent1 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent1.putExtra("title", title);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(EntryActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+            // second notifiction
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(Calendar.HOUR_OF_DAY, 15);
+            calendar2.set(Calendar.MINUTE, 0);
+            calendar2.set(Calendar.SECOND, 0);
+            Intent intent2 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent2.putExtra("title", title);
+            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(EntryActivity.this, 0,intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am2 = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
+
+            // third notification
+            Calendar calendar3 = Calendar.getInstance();
+            calendar3.set(Calendar.HOUR_OF_DAY, 20);
+            calendar3.set(Calendar.MINUTE, 0);
+            calendar3.set(Calendar.SECOND, 0);
+            Intent intent3 = new Intent(EntryActivity.this, AlarmReciever.class);
+            intent3.putExtra("title", title);
+            PendingIntent pendingIntent3 = PendingIntent.getBroadcast(EntryActivity.this, 0,intent3, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am3 = (AlarmManager) EntryActivity.this.getSystemService(EntryActivity.this.ALARM_SERVICE);
+            am3.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent3);
+        }
     }
+
 
     private class SeekBarTimeClickListener implements SeekBar.OnSeekBarChangeListener {
         @Override
