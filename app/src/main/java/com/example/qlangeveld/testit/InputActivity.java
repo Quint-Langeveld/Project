@@ -1,11 +1,14 @@
 package com.example.qlangeveld.testit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -27,7 +30,44 @@ public class InputActivity extends AppCompatActivity{
         TextView textChallenge = findViewById(R.id.challengeText);
         textChallenge.setText(challenge);
 
+
+        // pop up??
+        Cursor cursor = db.selectFillin(challenge);
+        cursor.moveToFirst();
+        String fillin = cursor.getString(cursor.getColumnIndex("fillin"));
+        cursor.close();
+
+        if (fillin.equals("locked")) {
+            showSimplePopUp();
+        }
     }
+
+
+    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
+    private void showSimplePopUp() {
+        String message = "but you still have to wait a little time..";
+
+        // the message
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Good motivation!");
+
+        helpBuilder.setMessage(message);
+
+        // when really to delete it
+        helpBuilder.setPositiveButton("Ok, go back",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // to remove it
+                        finish();
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
+
 
     public void onGOClicked(View view) {
         int succeeded;
@@ -47,6 +87,8 @@ public class InputActivity extends AppCompatActivity{
         EntryDatabase.getInstance(getApplicationContext()).insertValue(newValue);
 
         isChallengeFinished();
+
+        EntryDatabase.getInstance(getApplicationContext()).setFillinTolocked(challenge);
 
         finish();
     }

@@ -53,8 +53,9 @@ public class EntryActivity extends AppCompatActivity implements AdapterView.OnIt
         makeRepeatString();
 
         int progress = 0;
+        String fillin = "free";
 
-        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, progress, state, repeating);
+        Challenge challenge = new Challenge(title, amountOfTime, periodOfTime, amountOfNotifications, progress, state, repeating, fillin);
 
         EntryDatabase.getInstance(getApplicationContext()).insert(challenge);
 

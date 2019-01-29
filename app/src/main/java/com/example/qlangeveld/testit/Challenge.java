@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Challenge implements Serializable {
 
-    private String challege,  periodOfTime, state, repeat;
+    private String challege,  periodOfTime, state, repeat, fillin;
     private int amountOfTime, amountOfNotifications, progress;
 
-    public Challenge(String challenge, int amountOfTime, String periodOfTime, int amountOfNotifications, int progress, String state, String repeat) {
+    public Challenge(String challenge, int amountOfTime, String periodOfTime, int amountOfNotifications, int progress, String state, String repeat, String fillin) {
         this.challege = challenge;
         this.amountOfTime = amountOfTime;
         this.periodOfTime = periodOfTime;
@@ -15,6 +15,7 @@ public class Challenge implements Serializable {
         this.progress = progress;
         this.state = state;
         this.repeat = repeat;
+        this.fillin = fillin;
     }
 
     public String getChallege() {
@@ -45,6 +46,10 @@ public class Challenge implements Serializable {
         return progress;
     }
 
+    public String getFillin() {
+        return fillin;
+    }
+
     public void setChallege(String challege) {
         this.challege = challege;
     }
@@ -71,5 +76,9 @@ public class Challenge implements Serializable {
 
     public void setRepeat(String repeat) {
         this.repeat = repeat;
+    }
+
+    public void setFillin(String fillin) {
+        this.fillin = fillin;
     }
 }

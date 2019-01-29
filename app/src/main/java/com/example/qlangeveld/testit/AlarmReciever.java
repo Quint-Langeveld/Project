@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import static android.app.Application.getProcessName;
 import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
 
@@ -17,11 +18,18 @@ import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
 public class AlarmReciever extends BroadcastReceiver {
 
+
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
         String title = (String) intent.getSerializableExtra("title");
 
+        // set filling to free
+        EntryDatabase.getInstance(context).setFillinToFree(title);
+
+        // send notification
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -42,7 +50,6 @@ public class AlarmReciever extends BroadcastReceiver {
                         .setVibrate(new long[] { 500, 500})
                         .setContentIntent(pendingIntent)
                         .build();
-
 
         notificationManager.notify(1, notification);
     }

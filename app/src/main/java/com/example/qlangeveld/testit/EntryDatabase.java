@@ -24,7 +24,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, progress INT, state TEXT, repeat TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
+        String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, progress INT, state TEXT, repeat TEXT, fillin TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         String createItemValues = "create table itemValues (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, succeeded INT, feeling INT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
         db.execSQL(createEntries);
         db.execSQL(createItemValues);
@@ -86,6 +86,13 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    public Cursor selectFillin(String challenge) {
+        String selectFillin = "SELECT fillin FROM entries WHERE challenge='" + challenge + "'";
+        Cursor selectFillinCursor = this.getWritableDatabase().rawQuery(selectFillin, null);
+        return selectFillinCursor;
+    }
+
+
     public void toFinished(String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -102,6 +109,23 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    public void setFillinTolocked(String challenge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String setFillinToLocked = "UPDATE entries SET fillin='locked' WHERE challenge='" + challenge + "'";
+        db.execSQL(setFillinToLocked);
+    }
+
+
+    public void setFillinToFree(String challenge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String setFillinToFree = "UPDATE entries SET fillin='free' WHERE challenge='" + challenge + "'";
+        db.execSQL(setFillinToFree);
+
+    }
+
+
     public void insert(Challenge challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -115,6 +139,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
         cv.put("progress", challenge.getProgress());
         cv.put("state", challenge.getState());
         cv.put("repeat", challenge.getRepeat());
+        cv.put("fillin", challenge.getFillin());
 
         db.insert("entries", null, cv);
     }
