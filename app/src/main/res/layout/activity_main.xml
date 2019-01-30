@@ -7,32 +7,32 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ongoingButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="49dp"
-        android:background="@color/littleMoreBlue"
-        android:backgroundTint="@color/littleMoreBlue"
+        android:background="@color/tintedBlue"
+        android:backgroundTint="@android:color/transparent"
         android:onClick="onGoingClicked"
         android:text="ongoing"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/finishedButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/finishedButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="49dp"
-        android:background="@color/littleMoreBlue"
-        android:backgroundTint="@color/littleMoreBlue"
+        android:background="@color/tintedBlue"
+        android:backgroundTint="@android:color/transparent"
         android:onClick="onFinishedClicked"
         android:text="finished"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/ongoingButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
@@ -69,7 +69,7 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
-        android:layout_height="31dp"
+        android:layout_height="44dp"
         android:gravity="center"
         android:text="Your Challenges"
         android:textAlignment="center"
@@ -78,6 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/ongoingButton" />
 
 </android.support.constraint.ConstraintLayout>
