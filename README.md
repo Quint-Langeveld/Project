@@ -22,8 +22,11 @@ In het thuisscherm (scherm 1) van de app zit een listView met challenges waar de
 The user's input is stored in a local SQLite database in two tables. One contains the names of the challenges etc. and the other contains the actual data values of the challenges. 
 
 #### External components
+
+##### Libraries
 This app makes use of two external libraries. The first is AnyChart Library and computes the Pie chart (BRON: https://www.anychart.com). The second is a library from GraphView (BRON: http://www.android-graphview.org) and computes the line graph. Both libraries get their data from the local SQLite database to show their graphs with. 
 
-
-#### Hardest Parts
+##### Scripts
+*Gesture Detection*: The implementation of a gesture detection in the MainActivity if from BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout.
+The script for the *Pop-up Messages* was retrieved from BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html.
 
