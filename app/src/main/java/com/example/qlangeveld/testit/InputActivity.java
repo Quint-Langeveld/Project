@@ -1,18 +1,16 @@
 package com.example.qlangeveld.testit;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+// This Activity handles the input of the user when he/she enters how they feel and if they succeeded
 public class InputActivity extends AppCompatActivity{
 
     private String challenge;
@@ -33,9 +31,11 @@ public class InputActivity extends AppCompatActivity{
     }
 
 
+    // User commits input
     public void onGOClicked(View view) {
-        int succeeded;
 
+        // Detects if user succeeded
+        int succeeded;
         Switch succesSwitch = findViewById(R.id.succesSwitch);
         if (succesSwitch.isChecked()) {
             succeeded = 1;
@@ -43,40 +43,56 @@ public class InputActivity extends AppCompatActivity{
             succeeded = 0;
         }
 
+
+        // Detection of the feeling of the user
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         float rating = ratingBar.getRating();
 
         Value newValue = new Value(challenge, succeeded, rating);
 
+        // Inserts a new item in 'itemValues' table of the local database
         EntryDatabase.getInstance(getApplicationContext()).insertValue(newValue);
 
+        // Checks if challenge has to be changed to 'finished'
         isChallengeFinished();
 
+        // Locks the input page of this challenge until it is switched back to 'free' by the TimeManager class
         EntryDatabase.getInstance(getApplicationContext()).setFillinTolocked(challenge);
 
         finish();
     }
 
 
+    // Inserts the progress in the database
     private void setProgress(int totalProgress, int nowProgress) {
 
         float percent = (nowProgress * 100.0f) / totalProgress;
         int newPercent = Math.round(percent);
 
-        Log.d("progress", "setProgress: " + newPercent);
-
         EntryDatabase.getInstance(getApplicationContext()).setProgress(newPercent, challenge);
     }
 
 
+    // Hnadles the progress of a challenge
     private void isChallengeFinished() {
 
         // Check if challenge is completed!
+        int totalProgress = isCompleted();
+
+        // Calculates the progress in percentage and inserts is in the database
+        checkProgress(totalProgress);
+    }
+
+
+    // Calculates and returns the total amount of input of a challenge
+    private int isCompleted() {
+
+        // Select cursor
         Cursor selectTimeCursor = db.selectTimeOfChallenge(challenge);
         Cursor selectPeriodCursor = db.selectPeriodOfChallenge(challenge);
         Cursor selectAmountOfNotificationsCursor = db.selectAmountOfNotifications(challenge);
 
-
+        // Retrieve data
         selectPeriodCursor.moveToFirst();
         String PeriodOfChallenge = selectPeriodCursor.getString(selectPeriodCursor.getColumnIndex("periodOfTime"));
         selectPeriodCursor.close();
@@ -123,8 +139,13 @@ public class InputActivity extends AppCompatActivity{
             }
         }
 
+        return totalProgress;
+    }
 
-        // and check how often the challenge already is filled in
+
+    // Inserts the progress of a challenge in percentage in the database
+    private void checkProgress(int totalProgress) {
+
         Cursor selectPieChartCursor = db.selectPieChart(challenge);
         int counter = 0;
         if (selectPieChartCursor.moveToFirst()) {
@@ -136,12 +157,14 @@ public class InputActivity extends AppCompatActivity{
 
         setProgress(totalProgress, counter);
 
+        // Inserts into the database
         if (counter >= totalProgress) {
             EntryDatabase.getInstance(getApplicationContext()).toFinished(challenge);
         }
     }
 
 
+    // Redirects user to the GraphActivity to show an update of the progress
     public void onProgressClicked(View view) {
         Intent intent = new Intent(InputActivity.this, GraphActivity.class);
         intent.putExtra("challenge", challenge);

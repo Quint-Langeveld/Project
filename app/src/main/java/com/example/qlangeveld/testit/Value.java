@@ -1,17 +1,23 @@
 package com.example.qlangeveld.testit;
 
+
+// Object that contains the input form the InputActivity
 public class Value {
 
     private String challenge;
     private int succeeded;
     private float feeling;
 
+
+    // Constructor
     public Value(String challenge, int succeeded, float feeling) {
         this.challenge = challenge;
         this.succeeded = succeeded;
         this.feeling = feeling;
     }
 
+
+    // Getters
     public String getChallenge() {
         return challenge;
     }
@@ -24,6 +30,8 @@ public class Value {
         return feeling;
     }
 
+
+    // Setters
     public void setChallenge(String challenge) {
         this.challenge = challenge;
     }

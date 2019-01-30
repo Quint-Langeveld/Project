@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//
+// This activity collects the data fromthe database and then shows is to the user
 public class GraphActivity extends AppCompatActivity {
 
     private String challenge;
@@ -47,6 +47,7 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 
+    // The pie chart using the AnyChart Library (BRON: https://www.anychart.com)
     public void setTopChart() {
         // retrieve data
         Cursor pieCursor = db.selectPieChart(challenge);
@@ -54,6 +55,7 @@ public class GraphActivity extends AppCompatActivity {
         int lengthSucces = 0;
         int lengthFail = 0;
 
+        // Collect the right succeeded-percentage
         if (pieCursor.moveToFirst()) {
             do {
                 int status = pieCursor.getInt(pieCursor.getColumnIndex("succeeded"));
@@ -72,15 +74,14 @@ public class GraphActivity extends AppCompatActivity {
         topChart.setBackgroundColor("#11AABB");
         Pie pie = AnyChart.pie();
 
-
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Succeeded", lengthSucces));
         data.add(new ValueDataEntry("Failed", lengthFail));
 
         pie.data(data);
 
+        // Set preferences for show
         pie.background("#11AABB");
-
         pie.legend()
                 .position("right")
                 .itemsLayout(LegendLayout.VERTICAL)
@@ -90,6 +91,7 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 
+    // The Line Graph using the GraphView Library(BRON: http://www.android-graphview.org)
     public void setBottomChart() {
         // retrieve data
         Cursor feelingCursor = db.selectFeeling(challenge);
@@ -97,24 +99,24 @@ public class GraphActivity extends AppCompatActivity {
         List<Integer> ratings = new ArrayList<>();
         List<Integer> xPositions = new ArrayList<>();
 
+
+        // Collect the right feeling-data
         if (feelingCursor.moveToFirst()) {
             int counter = 0;
             do {
-
                 int feel = feelingCursor.getInt(feelingCursor.getColumnIndex("feeling"));
                 ratings.add(feel);
                 xPositions.add(counter);
 
                 counter += 1;
-
             } while (feelingCursor.moveToNext());
         }
         feelingCursor.close();
 
-
         int size = ratings.size();
         DataPoint[] data = new DataPoint[size];
 
+        // And put it in the Graph
         for (int i=0; i<size; i++) {
             int y = ratings.get(i);
             int x = xPositions.get(i);
@@ -124,14 +126,12 @@ public class GraphActivity extends AppCompatActivity {
         }
 
 
-        // and fill the graph!
+        // Fill the graph!
         GraphView graph = findViewById(R.id.bottomGraph);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(data);
         series.setThickness(25);
 
         graph.addSeries(series);
-
     }
-
 }

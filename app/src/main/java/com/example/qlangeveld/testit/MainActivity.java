@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+
+// Activity containing two Adapters to show a list of ongoing challenges and finished challenges
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EntryDatabase db;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View.OnTouchListener gestureListener;
 
 
+    // Set new gestureListener, OnItemClickListener, OnItemLongClickListener, a link with the database and the adapters
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +64,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    // Connects the button to onFinishedClicked
     public void onFinishedClicked(View view) {
         onFinishedClicked();
     }
 
+
+    // Connects the button to onGoingClicked
     public void onGoingClicked(View view) {
         onGoingClicked();
     }
@@ -99,21 +106,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    // does nothing, but is required
     @Override
     public void onClick(View v) {
     }
 
 
+    // Swipes to the left activates onFinishedClicked
     private void onSwipeLeft() {
         onFinishedClicked();
     }
 
 
+    // Swipes to the right activates onGoingClicked
     private void onSwipeRight() {
         onGoingClicked();
     }
 
 
+    // ListClickListener for the listView
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -142,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    // LongCLickListener for the listView
     private class OnItemLongClickListener implements AdapterView.OnItemLongClickListener {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -153,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
+    // pop up message to delete challenge from list (BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html)
     private void showSimplePopUp(AdapterView<?> parent, int position) {
         Cursor cursor = (Cursor) parent.getItemAtPosition(position);
         final long _id = cursor.getInt(cursor.getColumnIndex("_id"));
@@ -184,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    // When user wants to view the ongoing challenges
     public void onGoingClicked() {
 
         Button finished = findViewById(R.id.finishedButton);
@@ -200,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    // When user wants to view the finished challenges
     public void onFinishedClicked() {
 
         Button ongoing = findViewById(R.id.ongoingButton);
@@ -215,12 +230,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    // Add a challenge
     public void onFloatingButtonClicked(View view) {
         Intent intent = new Intent(MainActivity.this, EntryActivity.class);
         startActivity(intent);
     }
 
 
+    // Is called when returns to the MainActivity from an other activity
     @Override
     protected void onResume() {
         super.onResume();
@@ -228,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    // Updates the curser so the listView is up to date
     private void upDateData() {
         db = EntryDatabase.getInstance(this);
         Cursor curs = db.selectOngoing();
@@ -235,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
+    // pop up message prevents user from putting in data to early (BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html)
     private void showSimpleLockedPopUp() {
         String message = "but you still have to wait a little time..";
 
