@@ -58,12 +58,12 @@ public class InputActivity extends AppCompatActivity{
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        // to remove it
+                        // go back
                         finish();
                     }
                 });
 
-        // Remember, create doesn't show the dialog
+        // Remember, create doesn't show the dialog=
         AlertDialog helpDialog = helpBuilder.create();
         helpDialog.show();
     }
