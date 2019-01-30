@@ -13,8 +13,11 @@ prettige manier.
 ## De App
 
 In het thuisscherm (scherm 1) van de app zit een listView met challenges waar de user mee bezig is. Er wordt aangegeven hoe de challenge heet, hoe lang deze duurt en de progressie van de challenge. Door middel van een 'floating action button' in scherm 1 wordt er een nieuwe challenge aangemaakt. Scherm 2 laat zien hoe deze actifity eruit ziet. 
-<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163928.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163940.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190125-223320.png" width="23%" height="23%"/>
 
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163928.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163940.png" width="23%" height="23%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190125-223320.png" width="23%" height="23%"/>
+scherm 1                        scherm 2                            scherm 3                         scherm 4
+
+ 
 ## Info
 #### Data Scources 
 
