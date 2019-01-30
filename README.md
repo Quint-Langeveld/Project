@@ -19,12 +19,10 @@ In het thuisscherm (scherm 1) van de app zit een listView met challenges waar de
  
 ## Info
 #### Data Scources 
-
+The user's input is stored in a local SQLite database in two tables. One contains the names of the challenges etc. and the other contains the actual data values of the challenges. 
 
 #### External components
-
-
-#### Similar Apps
+This app makes use of two external libraries. The first is AnyChart Library and computes the Pie chart (BRON: https://www.anychart.com). The second is a library from GraphView (BRON: http://www.android-graphview.org) and computes the line graph. Both libraries get their data from the local SQLite database to show their graphs with. 
 
 
 #### Hardest Parts
