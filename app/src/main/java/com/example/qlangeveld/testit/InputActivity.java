@@ -30,42 +30,6 @@ public class InputActivity extends AppCompatActivity{
         TextView textChallenge = findViewById(R.id.challengeText);
         textChallenge.setText(challenge);
 
-
-        // pop up??
-        Cursor cursor = db.selectFillin(challenge);
-        cursor.moveToFirst();
-        String fillin = cursor.getString(cursor.getColumnIndex("fillin"));
-        cursor.close();
-
-        if (fillin.equals("locked")) {
-            showSimplePopUp();
-        }
-    }
-
-
-    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
-    private void showSimplePopUp() {
-        String message = "but you still have to wait a little time..";
-
-        // the message
-        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle("Good motivation!");
-
-        helpBuilder.setMessage(message);
-
-        // when really to delete it
-        helpBuilder.setPositiveButton("Ok, go back",
-                new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        // go back
-                        finish();
-                    }
-                });
-
-        // Remember, create doesn't show the dialog=
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
     }
 
 

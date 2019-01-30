@@ -8,28 +8,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import static android.app.Application.getProcessName;
 import static com.example.qlangeveld.testit.App.CHANNEL_1_ID;
 
 
-
-
+// This class is used to manage the time slots and sends the notifications and re-opens the input activity to be filled in.
 //from BRON: https://stackoverflow.com/questions/23440251/how-to-repeat-notification-daily-on-specific-time-in-android-through-background
-
 public class AlarmReciever extends BroadcastReceiver {
-
-
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         String title = (String) intent.getSerializableExtra("title");
 
-        // set filling to free
+        // Set fillin to free
         EntryDatabase.getInstance(context).setFillinToFree(title);
 
-        // send notification
+        // Send notification
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -40,7 +34,7 @@ public class AlarmReciever extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
+        // Set preferences for the notification
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_1_ID)
                         .setSmallIcon(R.drawable.winner)
                         .setContentTitle("Test it!")

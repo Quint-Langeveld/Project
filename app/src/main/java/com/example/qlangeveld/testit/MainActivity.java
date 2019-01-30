@@ -1,11 +1,9 @@
 package com.example.qlangeveld.testit;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -129,9 +127,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("challenge", challenge);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(MainActivity.this, InputActivity.class);
-                intent.putExtra("challenge", challenge);
-                startActivity(intent);
+                // pop up??
+                String fillin = cursor.getString(cursor.getColumnIndex("fillin"));
+                if (fillin.equals("locked")) {
+                    showSimpleLockedPopUp();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, InputActivity.class);
+                    intent.putExtra("challenge", challenge);
+                    startActivity(intent);
+                }
+
             }
         }
     }
@@ -227,6 +232,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         db = EntryDatabase.getInstance(this);
         Cursor curs = db.selectOngoing();
         entryAdapter.swapCursor(curs);
+    }
+
+
+    // based on BRON: http://www.androiddom.com/2011/06/displaying-android-pop-up-dialog.html
+    private void showSimpleLockedPopUp() {
+        String message = "but you still have to wait a little time..";
+
+        // the message
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Good motivation!");
+
+        helpBuilder.setMessage(message);
+
+        // when really to delete it
+        helpBuilder.setPositiveButton("Ok, I'll wait",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // go back
+                    }
+                });
+
+        // Remember, create doesn't show the dialog=
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
     }
 
 

@@ -20,6 +20,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//
 public class GraphActivity extends AppCompatActivity {
 
     private String challenge;

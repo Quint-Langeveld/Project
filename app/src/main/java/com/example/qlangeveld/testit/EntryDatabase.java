@@ -6,11 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+// The Local Database
 public class EntryDatabase extends SQLiteOpenHelper {
+
 
     private static EntryDatabase instance;
 
-
+    // Instantizes and returns the database when not already done
     public static EntryDatabase getInstance(Context context) {
         if (instance == null) {
             instance = new EntryDatabase(context, "entries", null, 1 );
@@ -18,10 +21,14 @@ public class EntryDatabase extends SQLiteOpenHelper {
         return instance;
     }
 
+
+    // Constructor
     private EntryDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
+
+    // Creates two tables
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createEntries = "create table entries (_id INTEGER PRIMARY KEY AUTOINCREMENT, challenge TEXT, amountOfTime INT, periodOfTime TEXT, amountOfNotifications INT, progress INT, state TEXT, repeat TEXT, fillin TEXT, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)";
@@ -30,6 +37,8 @@ public class EntryDatabase extends SQLiteOpenHelper {
         db.execSQL(createItemValues);
     }
 
+
+    // When an upgrade is needed
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + "entries");
@@ -37,6 +46,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Select all the challenges out of 'entries' that are still going on
     public Cursor selectOngoing() {
         String selectOngoing = "SELECT * FROM entries WHERE state='ongoing'";
         Cursor curs = this.getWritableDatabase().rawQuery(selectOngoing, null);
@@ -44,6 +54,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Selects all the challenges out of 'entries' that are already finished
     public Cursor selectFinished() {
         String allFinished = "SELECT * FROM entries WHERE state='finished'";
         Cursor curs = this.getWritableDatabase().rawQuery(allFinished, null);
@@ -51,6 +62,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Collects 'succeeded' from 'itemValues'
     public Cursor selectPieChart(String challenge) {
         String selectPie = "SELECT succeeded FROM itemValues WHERE challenge='" + challenge + "'";
         Cursor pieCursor = this.getWritableDatabase().rawQuery(selectPie, null);
@@ -58,6 +70,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Collects 'feeling' from 'itemValues'
     public Cursor selectFeeling(String challenge) {
         String selectFeeling = "SELECT feeling FROM itemValues WHERE challenge='" + challenge + "'";
         Cursor feelCursor = this.getWritableDatabase().rawQuery(selectFeeling, null);
@@ -65,6 +78,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Collects 'amount of Time' from 'entries'
     public Cursor selectTimeOfChallenge(String challenge) {
         String selectTime = "SELECT amountOfTime FROM entries WHERE challenge='" + challenge + "'";
         Cursor timeCursor = this.getWritableDatabase().rawQuery(selectTime,null);
@@ -72,6 +86,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Collects 'period of Challenge' from 'entries'
     public Cursor selectPeriodOfChallenge(String challenge) {
         String selectPeriod = "SELECT periodOfTime FROM entries WHERE challenge='" + challenge + "'";
         Cursor periodCursor = this.getWritableDatabase().rawQuery(selectPeriod,null);
@@ -79,6 +94,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Collects 'amount of Notifications' from 'entries'
     public Cursor selectAmountOfNotifications(String challenge) {
         String selectamountNOti = "SELECT amountOfNotifications FROM entries WHERE challenge='" + challenge + "'";
         Cursor amountNotiCursor = this.getWritableDatabase().rawQuery(selectamountNOti,null);
@@ -86,13 +102,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
-    public Cursor selectFillin(String challenge) {
-        String selectFillin = "SELECT fillin FROM entries WHERE challenge='" + challenge + "'";
-        Cursor selectFillinCursor = this.getWritableDatabase().rawQuery(selectFillin, null);
-        return selectFillinCursor;
-    }
-
-
+    // Updates the state of the challenge
     public void toFinished(String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -101,6 +111,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Updates the progress of the challenge
     public void setProgress(int progress, String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -109,6 +120,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Locks the challenges to be entered
     public void setFillinTolocked(String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -117,6 +129,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Frees the challenges to be entered
     public void setFillinToFree(String challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -126,6 +139,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Inserts a new challenge
     public void insert(Challenge challenge) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -145,6 +159,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Inserts a new itemValue from the InputActivity
     public void insertValue(Value value) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -158,6 +173,7 @@ public class EntryDatabase extends SQLiteOpenHelper {
     }
 
 
+    // Removes a challenge from the database
     public void removeID(long id) {
         SQLiteDatabase dB = this.getReadableDatabase();
         String ide = String.valueOf(id);

@@ -2,11 +2,15 @@ package com.example.qlangeveld.testit;
 
 import java.io.Serializable;
 
+
+// Object that stores all the meta-data of a challenge.
 public class Challenge implements Serializable {
 
     private String challege,  periodOfTime, state, repeat, fillin;
     private int amountOfTime, amountOfNotifications, progress;
 
+
+    // Constructor
     public Challenge(String challenge, int amountOfTime, String periodOfTime, int amountOfNotifications, int progress, String state, String repeat, String fillin) {
         this.challege = challenge;
         this.amountOfTime = amountOfTime;
@@ -18,6 +22,8 @@ public class Challenge implements Serializable {
         this.fillin = fillin;
     }
 
+
+    // Getters
     public String getChallege() {
         return challege;
     }
@@ -50,6 +56,8 @@ public class Challenge implements Serializable {
         return fillin;
     }
 
+
+    // Seters
     public void setChallege(String challege) {
         this.challege = challege;
     }

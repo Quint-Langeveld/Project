@@ -16,7 +16,8 @@
         android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +26,15 @@
         </activity>
         <activity
             android:name=".EntryActivity"
-            android:theme="@style/empty" />
+            android:theme="@style/empty"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".InputActivity"
-            android:theme="@style/empty" />
+            android:theme="@style/empty"
+            android:screenOrientation="portrait"/>
         <activity android:name=".GraphActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
         <receiver android:name=".AlarmReciever"></receiver>
     </application>
 
