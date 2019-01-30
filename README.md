@@ -12,7 +12,7 @@ prettige manier.
 
 ## App Structuur
 
-<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="30%" height="30%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163928.png" width="30%" height="30%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163928.png" width="30%" height="30%"/>
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="20%" height="20%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163928.png" width="20%" height="20%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163940.png" width="20%" height="20%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163940.png" width="20%" height="20%"/>
 
 ## Info
 #### Data Scources 
