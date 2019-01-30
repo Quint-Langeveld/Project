@@ -11,9 +11,8 @@ prettige manier.
 
 
 ## App Structuur
-```
-TODO
-```
+
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="30%" height="30%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_20190130-163823.png" width="30%" height="30%"/>
 
 ## Info
 #### Data Scources 
