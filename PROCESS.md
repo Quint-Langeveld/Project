@@ -90,24 +90,24 @@ Found out that 'AnyChart' for the pie chart is going to be the best choice and '
 Hardest parts were the retrieval of data from the inputValues table. This was the first moment to retrieve data from the database. After this point I had to do it more often. 
 
 ### dag 14
+
+- HACKATON!!
+
+### dag 15
 - Installed a way to keep track of the progress of the challenge
 
 This way I could keep track of when a challenge was finished or not. From on this moment on I could test the finished adapter... 
 
 In the listView of the mainactivity can the progress be seen in a seekbar. This is pleasant for the user and stimulates to proceed! 
 
-### dag 15
+## Week 4 (28 jan - 1 feb)
+
+### day 16
 - Completed the Graph Activity and also made a shortcut from the inputActivity to the graphActivity to watch the progress. (see the button on the right in the image below:
 
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548942774.png" width="20%" height="20%"/>
 
-## Week 4 (28-1)
+### day 17
+- Finished the 'time mangement problem'
 
-### day 16
-to do:
-- in de input activity een knop maken naar 'view process'. Hiervoor dus ook de graph lib implementeren
-
-- eindelijk de swipelistener fixen!!
-
-- ongoing en finised knoppen fixen. nu crashed mn app nmlk.
-
+Not to be able of finishing the challenge within a few minutes I had to come up with an idea of keeping the user from the inputActivity until time had gone by. By integrating this inside the AlarmReciever class it worked. The AlarmReciever gives the user a notiviction and changes the status of a challenge in the database to 'free'. This means that the user is able to fill in his/hers feeling and succes and afterwards the status will change again to 'locked'. This eventually is a very simplistic aproach, but took me a while to think about. 
