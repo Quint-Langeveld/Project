@@ -8,7 +8,7 @@
 
 ### day 3
 - Added the final design document:
-<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190108_154433%20kopie.jpg" width="100%" height="100%"/>
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190108_154433%20kopie.jpg" width="50%" height="50%"/>
 
 ### day 4
 - The first code on paper
