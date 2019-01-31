@@ -73,7 +73,7 @@ The swipeListener, database tables and App Theme were a bit strange, so I improv
 
 This ectually turned out to be extremely simple, but took me a full morning to find out. But finally choosen an icon:
 
-<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/winner.png" width="20%" height="20%"/>
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/winner.png" width="20%" height="20%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548941767.png" width="20%" height="20%"/>
 
 
 ### dag 12
