@@ -1,5 +1,8 @@
 # Test it!
 
+Check de demonstratie video op:
+https://www.youtube.com/watch?v=i4jVD54MKfg
+
 
 ## Algemeen
 **Een TestApp. De user kan een nieuwe challenge voor zichzelf aanmaken en aangeven hoe lang deze vol te houden en hoe de score bij te houden.**
