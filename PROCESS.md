@@ -7,7 +7,7 @@
 - created README and DESIGN documents on GitHub 
 
 ### day 3
-- Added the final design document:
+- Added the final design document to DESIGN.md:
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190108_154433%20kopie.jpg" width="50%" height="50%"/>
 
 ### day 4
