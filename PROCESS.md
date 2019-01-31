@@ -78,18 +78,26 @@ retrieved from the internet, but I can't find the creator for now...
 
 
 ### dag 12
-- Startted with the GraphActivity
+- Started with the GraphActivity
 
 Found out the best Library to use for my data. 
 Found out that 'AnyChart' for the pie chart is going to be the best choice and 'GraphView' for the ling graph.  
 
 ### dag 13
 
+- Changed my database again and installed the Libraries for the graphView. 
+
+Hardest parts were the retrieval of data from the inputValues table. This was the first moment to retrieve data from the database. After this point I had to do it more often. 
 
 ### dag 14
+- Installed a way to keep track of the progress of the challenge
 
+This way I could keep track of when a challenge was finished or not. From on this moment on I could test the finished adapter... 
+
+In the listView of the mainactivity can the progress be seen in a seekbar. This is pleasant for the user and stimulates to proceed! 
 
 ### dag 15
+- Completed the Graph Activity 
 
 ## Week 4 (28-1)
 
