@@ -51,7 +51,7 @@ Also figuered out that the notification Manager I was trying to implement was wr
 ### dag 8
 Switched to a notification manager that is compatible with both higher and lower API levels that 26. This caused me to implement two extra classe eventually, but for now it works with just one. 
 
-<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548940990.png" width="50%" height="50%"/>
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548940990.png" width="20%" height="20%"/>
 
 
 ### dag 9
