@@ -2,17 +2,27 @@
 
 
 
-## Week 1
+## Week 1 (7-11 jan)
 ### day 2
+- created README and DESIGN documents on GitHub 
 
 ### day 3
+- Added the final design document:
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/IMG_20190108_154433%20kopie.jpg" width="100%" height="100%"/>
 
 ### day 4
+- The first code on paper
+
+Started with really rough code, but made a lot of progress. 
+The hardest parts were to think of the rigth types of variables and I actually changed then a lot. 
+For example, how to store the length of a challenge. Especcially when the user wants to retreive ultiple notifications per day. 
 
 ### day 5
+- Tried to reach a screen style without actionBar. 
 
+This really took a long time, and I figured out almost everything on my one. I learnt a lot of these days, but they cost me valuable time as well. The hardest part was to create a style of my one that workes for every activity. I also tried the FullscreenActivity there, but that didn't turn out to be a succes. 
 
-## Week 2
+## Week 2 (14-18 jan)
 ### day 6
 Heb de activity aangemaakt waar ingevuld wordt door de user hoe deze zich voelt en of de challenge gelukt is.
 Hierdoor kwam de vraag op gang hoe ik graag de input van de user wil laten doorgeven. Door een getal te geven tussen 1 en 10? of
