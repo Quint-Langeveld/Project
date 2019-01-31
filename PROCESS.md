@@ -74,10 +74,14 @@ The swipeListener, database tables and App Theme were a bit strange, so I improv
 This ectually turned out to be extremely simple, but took me a full morning to find out. But finally choosen an icon:
 
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/winner.png" width="20%" height="20%"/> <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548941767.png" width="20%" height="20%"/>
+retrieved from the internet, but I can't find the creator for now...
 
 
 ### dag 12
+- Startted with the GraphActivity
 
+Found out the best Library to use for my data. 
+Found out that 'AnyChart' for the pie chart is going to be the best choice and 'GraphView' for the ling graph.  
 
 ### dag 13
 
