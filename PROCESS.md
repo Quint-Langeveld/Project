@@ -33,10 +33,7 @@ The eventual style became as follows:
 
 ## Week 2 (14-18 jan)
 ### day 6
-Heb de activity aangemaakt waar ingevuld wordt door de user hoe deze zich voelt en of de challenge gelukt is.
-Hierdoor kwam de vraag op gang hoe ik graag de input van de user wil laten doorgeven. Door een getal te geven tussen 1 en 10? of
-beter tussen 3 smileys te kiezen? Ik wilde eigenlijk een discrete seekBar in een circel, maar dat schijnt erg lastig te zijn.
-Zoals de foto hierbeneden:
+Created the InputActivity with all it's functionality. That raised the question how the user wants to fill in their mood. I was doupting between a scale bar from 1 to 10, but then the difference between for example 6 and 7 isn't really that much. Actually I wanted to implement a circular scale bar as pictured below, but that turned out to be to difficult. 
 
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/68747470733a2f2f7261772e6769746875622e636f6d2f4e6563617430722f5365656b436972636c652f6d61737465722f73616d706c652f5365656b436972636c652e706e67.png" width="50%" height="50%"/>
 
