@@ -62,14 +62,34 @@ With help from BRON: https://stackoverflow.com/questions/937313/fling-gesture-de
 At first the gesture detection overwrote the onItemLongClickListener for deleting items, but with a simple adjustment it went all good. 
 
 ### dag 10 
+- improved old functionality
+
+The swipeListener, database tables and App Theme were a bit strange, so I improved them. Especially layout wise. Took the time for a better design. 
 
 ## Week 3 (21-25 jan)
 
+### dag 11
+- Set an App icon. 
 
+This ectually turned out to be extremely simple, but took me a full morning to find out. But finally choosen an icon:
+
+
+
+
+### dag 12
+
+
+### dag 13
+
+
+### dag 14
+
+
+### dag 15
 
 ## Week 4 (28-1)
 
-### day 11
+### day 16
 to do:
 - in de input activity een knop maken naar 'view process'. Hiervoor dus ook de graph lib implementeren
 
@@ -77,5 +97,3 @@ to do:
 
 - ongoing en finised knoppen fixen. nu crashed mn app nmlk.
 
-gedaan:
-- icoontjes ingesreld!
