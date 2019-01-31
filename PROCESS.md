@@ -55,12 +55,13 @@ Switched to a notification manager that is compatible with both higher and lower
 
 
 ### dag 9
+- Installed an onSwipeListener
 
-Vandaag heb ik de onSwipeListener geinstaleerd. Dit is goed gegaan op het feit dat m'n onItemLongClickListener om list items te verwijderen niet meer reageert.
+With help from BRON: https://stackoverflow.com/questions/937313/fling-gesture-detection-on-grid-layout, I managed to implement a way to redirect a swipe movement to the angoing and finished adapters. 
 
-Daarnaast werken de knoppen aan de bovenkant van m'n scherm ook niet meer. Het is dus nog even verder uitzoeken hoe dit nou de juiste kant op moet gaan...
+At first the gesture detection overwrote the onItemLongClickListener for deleting items, but with a simple adjustment it went all good. 
 
-
+### dag 10 
 
 ## Week 3 (21-25 jan)
 
