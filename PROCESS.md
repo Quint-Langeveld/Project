@@ -99,7 +99,7 @@ In the listView of the mainactivity can the progress be seen in a seekbar. This 
 ### dag 15
 - Completed the Graph Activity and also made a shortcut from the inputActivity to the graphActivity to watch the progress. (see the button on the right in the image below:
 
-
+<img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/Screenshot_1548942774.png" width="20%" height="20%"/>
 
 ## Week 4 (28-1)
 
