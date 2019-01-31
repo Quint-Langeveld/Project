@@ -111,3 +111,7 @@ In the listView of the mainactivity can the progress be seen in a seekbar. This 
 - Finished the 'time mangement problem'
 
 Not to be able of finishing the challenge within a few minutes I had to come up with an idea of keeping the user from the inputActivity until time had gone by. By integrating this inside the AlarmReciever class it worked. The AlarmReciever gives the user a notiviction and changes the status of a challenge in the database to 'free'. This means that the user is able to fill in his/hers feeling and succes and afterwards the status will change again to 'locked'. This eventually is a very simplistic aproach, but took me a while to think about. 
+
+
+### day 18 
+- Finished App Functionality and added comments where needed
