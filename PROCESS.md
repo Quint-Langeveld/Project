@@ -22,6 +22,15 @@ For example, how to store the length of a challenge. Especcially when the user w
 
 This really took a long time, and I figured out almost everything on my one. I learnt a lot of these days, but they cost me valuable time as well. The hardest part was to create a style of my one that workes for every activity. I also tried the FullscreenActivity there, but that didn't turn out to be a succes. 
 
+The eventual style became as follows:
+```
+<style name="empty" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/tintedBlue</item>
+        <item name="android:backgroundTint">@color/tintedBlue</item>
+        <item name="android:statusBarColor">@color/littleMoreBlue</item>
+    </style>
+```
+
 ## Week 2 (14-18 jan)
 ### day 6
 Heb de activity aangemaakt waar ingevuld wordt door de user hoe deze zich voelt en of de challenge gelukt is.
@@ -56,7 +65,11 @@ Daarnaast werken de knoppen aan de bovenkant van m'n scherm ook niet meer. Het i
 
 
 
-## Week 3
+## Week 3 (21-25 jan)
+
+
+
+## Week 4 (28-1)
 
 ### day 11
 to do:
