@@ -97,7 +97,9 @@ This way I could keep track of when a challenge was finished or not. From on thi
 In the listView of the mainactivity can the progress be seen in a seekbar. This is pleasant for the user and stimulates to proceed! 
 
 ### dag 15
-- Completed the Graph Activity 
+- Completed the Graph Activity and also made a shortcut from the inputActivity to the graphActivity to watch the progress. (see the button on the right in the image below:
+
+
 
 ## Week 4 (28-1)
 
