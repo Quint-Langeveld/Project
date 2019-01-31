@@ -38,20 +38,18 @@ Created the InputActivity with all it's functionality. That raised the question 
 <img src="https://github.com/Quint-Langeveld/Project/blob/master/doc/68747470733a2f2f7261772e6769746875622e636f6d2f4e6563617430722f5365656b436972636c652f6d61737465722f73616d706c652f5365656b436972636c652e706e67.png" width="50%" height="50%"/>
 
 ### day 7
-Vragen die vandaag zich hebben opgedaan:
-- wat is een handige fabelstructuur?
-        - elke input in een eigen rij?
+I asked myself the next questions:
+- How to organize the tables in the database?
+- Which notificationManger do I have to use? 
+- How to organize the adapters with ongoing challenges and finished challenges. 
 
-- notification manager! API 24, of hoger?
-        - kan het nog voor oude systemen???
 
-- hoe de adapter handig te laten werken?
-        - als ik op finished klik —> nieuwe activity? neeee…
+I got to answer the first two today. I am going to use two tables. One table for all the challenges' names, periods and status and one table for input data of the challenges. This had to be a good and effective way to deal with the fact that for different challenges different timespans are needed and that I still am able to create a grapgh of the data.  
+
+Also figuered out that the notification Manager I was trying to implement was wrong. I used one for API levels 26 or higher, but more on that tomorrow.
 
 ### dag 8
-blijkt dat ik de verkeerde aanpak voor notifications gebruikte.
-
-Ben geswitcht maar een aanpak die ook API level 26 en hoger aankan.
+Switched to a notification manager that is compatible with both higher and lower API levels that 26. This caused me to implement two extra classe eventually, but for now it works with just one. 
 
 
 ### dag 9
